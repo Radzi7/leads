@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('leads', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('status');
             $table->string('number')->unique();
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->foreignId('lead_column_id')->constrained('lead_columns');
             $table->unsignedBigInteger('operator_id')->nullable();
             $table->foreign('operator_id')->references('id')->on('operators');
