@@ -1,8 +1,8 @@
-{{--@extends('layouts.main')--}}
+@extends('layouts.main')
 
-{{--@section('page.title', 'Создать пост')--}}
+@section('page.title', 'Создать пост')
 
-{{--@section('main.content')--}}
+@section('main.content')
     <x-title>
         {{ __('Добавить лид') }}
 
@@ -18,4 +18,4 @@
             {{ __('Добавить') }}
         </x-button>
     </x-post.form>
-{{--@endsection--}}
+@endsection

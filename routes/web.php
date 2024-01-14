@@ -37,3 +37,6 @@ Route::put('column/{lead}', [\App\Http\Controllers\LeadController::class, 'colum
 
 Route::get('comment/{lead}/edit', [\App\Http\Controllers\LeadController::class, 'commentEdit'])->name('comment.edit')->whereNumber('lead');
 Route::put('comment/{lead}', [\App\Http\Controllers\LeadController::class, 'commentUpdate'])->name('comment.update')->whereNumber('lead');
+
+Route::get('histories', [\App\Http\Controllers\HistoryController::class, 'index'])->name('histories');
+Route::get('histories/{history}', [\App\Http\Controllers\HistoryController::class, 'show'])->name('histories.show')->whereNumber('history');

@@ -31,5 +31,6 @@
         <x-button type="submit">
             {{ __('Сохранить') }}
         </x-button>
+
     </x-post.form>
 @endsection

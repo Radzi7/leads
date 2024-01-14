@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Lead extends Model
 {
     use HasFactory;
-    protected $fillable = ['comment', 'status', 'number','lead_column_id', 'operator_id'];
+    protected $fillable = ['id','comment', 'status', 'number','lead_column_id', 'operator_id'];
     public function lead_column() {
         return $this->hasOne(LeadColumn::class);
     }

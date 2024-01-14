@@ -15,6 +15,16 @@
                         {{ __('Главная') }}
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('leads') }}" class="nav-link " aria-current="page">
+                        {{ __('Все лиды') }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('histories') }}" class="nav-link " aria-current="page">
+                        {{ __('История лидов') }}
+                    </a>
+                </li>
 
 
             </ul>

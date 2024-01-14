@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('status');
-            $table->string('number')->unique();
+            $table->string('number');
             $table->text('comment')->nullable();
             $table->foreignId('lead_column_id')->constrained('lead_columns');
             $table->unsignedBigInteger('operator_id')->nullable();

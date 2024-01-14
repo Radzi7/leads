@@ -20,6 +20,11 @@
                     <option value={{$column->id}} >{{ $column->name }}</option>
                 @endforeach
             </select>
+            <select class="form-select p-2 mb-2" name="operator" id="operator" aria-label="Floating label select example">
+                @foreach($operators as $operator)
+                    <option value={{$operator->id}} >{{ $operator->name }}</option>
+                @endforeach
+            </select>
         </div>
         <x-button type="submit">
             {{ __('Изменить колонку') }}

@@ -4,7 +4,7 @@
 
 @section('main.content')
     <x-title>
-        {{ __('Просмотр поста') }}
+        {{ __('Просмотр лида') }}
 
         <x-slot name="link">
             <a href="{{ route('leads') }}">
@@ -12,12 +12,15 @@
             </a>
         </x-slot>
 
-        <x-slot name="right">
+        <x-slot name="right" class="d-flex justify-content-evenly gap-2">
             <x-button-link href="{{ route('leads.edit', $lead->id) }}">
                 {{ __('Изменить') }}
             </x-button-link>
+
+
         </x-slot>
 
+        <div class="d-flex justify-content-evenly gap-2 ">
             <x-button-link href="{{ route('take.edit', $lead->id) }}">
                 {{ __('Оператора') }}
             </x-button-link>
@@ -25,10 +28,11 @@
             <x-button-link href="{{ route('column.edit', $lead->id) }}">
                 {{ __('Колонка') }}
             </x-button-link>
-        <x-button-link href="{{ route('comment.edit', $lead->id) }}">
-            {{ __('Комментарий') }}
-        </x-button-link>
 
+            <x-button-link href="{{ route('comment.edit', $lead->id) }}">
+                {{ __('Комментарий') }}
+            </x-button-link>
+        </div>
     </x-title>
     <div>
         <h2 class="h4">
@@ -41,6 +45,9 @@
 
         <h2 class="h4">
             comment : {{ $lead->comment }}
+        </h2>
+        <h2 class="h4">
+            created_at : {{ $lead->created_at }}
         </h2>
         <h2 class="h4">
             @if($lead->lead_column_id==1)
