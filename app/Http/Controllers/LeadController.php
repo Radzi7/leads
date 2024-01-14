@@ -114,6 +114,10 @@ class LeadController extends Controller
 
     public function takeUpdate(Request $request, Lead $lead)
     {
+        if($lead->status == "New leads"){
+            $lead->status = "My list";
+            $lead->lead_column_id = 2;
+        }
         $lead->operator_id = $request->status_select;
         $lead->created_at = now();
         $lead->save();
