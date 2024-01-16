@@ -12,14 +12,14 @@
     @else
         <div class="container text-center ">
             <div class="d-flex flex-row p-2 justify-content-evenly bd-highlight mb-3">
-                <ol style="width: 215px" class=" p-3 list-group list-group-number border border-dark border-4">
+                <ol style="width: 500px" class=" p-3 list-group list-group-number border border-dark border-4">
                     @foreach($histories as $history)
                             <div class="p-3">
                                 <li>
-                                    <b class="d-flex justify-content-between gap-2 mb-3 ">
+                                    <b class="d-flex justify-content-center gap-2 mb-3 ">
                                         <a href="{{ route('histories.show', $history->id) }}">
                                             Action : {{  $history->action }}<br>
-                                            Lead_id: {{  $history->lead_id }}
+                                            Lead ID: {{  $history->lead_id }}
                                         </a>
                                     </b>
                                 </li>

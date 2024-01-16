@@ -12,7 +12,8 @@ class HistoryController extends Controller
     public function index()
     {
         $histories = History::query()
-            ->paginate(20);
+            ->latest('created_at')
+            ->paginate(200);
         return view('history.index', compact('histories'));
     }
 

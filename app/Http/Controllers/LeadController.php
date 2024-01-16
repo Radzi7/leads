@@ -15,9 +15,9 @@ class LeadController extends Controller
     public function index()
     {
         $leads = Lead::query()
-            ->paginate(20);
+            ->paginate(50);
         $lead_columns = LeadColumn::query()
-            ->paginate(10);
+            ->paginate(50);
 
         return view('leads/index', compact('leads','lead_columns'));
     }
@@ -54,7 +54,7 @@ class LeadController extends Controller
         $history->save();
 
         toastr()->success('New lead created successfully !');
-        return redirect()->route('leads.show', $lead);
+        return redirect()->route('leads', $lead);
     }
 
     public function show(Lead $lead)
@@ -80,7 +80,7 @@ class LeadController extends Controller
         ]);
         $lead->status = LeadColumn::query()->where('id', intval($request->status_select))->first()->getAttribute('name');
         $column_count = Lead::query()->where('lead_column_id',intval($request->status_select))->count();
-        if($column_count <= 10){
+        if(!$column_count >= 11){
             $lead->name = $request->name;
             $lead->number = $request->number;
             $lead->comment = $request->comment;
@@ -99,10 +99,10 @@ class LeadController extends Controller
             $history->save();
 
             toastr()->success('Lead updated successfully!');
-            return view('leads.show', compact('lead'));
+            return redirect()->route('leads');
         }
         else toastr()->error('This column is full !');
-        return view('leads.show', compact('lead'));
+        return redirect()->route('leads');
     }
     public function takeEdit(Lead $lead)
     {
@@ -129,8 +129,7 @@ class LeadController extends Controller
         $history->save();
 
         toastr()->success('Operator added successfully !');
-
-        return view('leads.show', compact('lead'));
+        return redirect()->route('leads');
     }
 
     public function columnEdit(Lead $lead)
@@ -148,18 +147,17 @@ class LeadController extends Controller
     {
         $lead->status = LeadColumn::query()->where('id', intval($request->status_select))->first()->getAttribute('name');
         $column_count = Lead::query()->where('lead_column_id',intval($request->status_select))->count();
-        if($column_count <= 10){
+//        dd($lead->status);
+        if(!$column_count >= 11){
             if(intval($request->status_select)==1){
                 $lead->operator_id = null;
-                $lead->lead_column_id = intval($request->status_select);
-                $lead->created_at = now();
-                $lead->save();
             } else {
                 $lead->operator_id = intval($request->operator);
-                $lead->lead_column_id = intval($request->status_select);
-                $lead->created_at = now();
-                $lead->save();
             }
+            $lead->lead_column_id = intval($request->status_select);
+            $lead->created_at = now();
+            $lead->save();
+
             $history = new History();
             $history->action = 'change column';
             $history->lead_id = $lead->id;
@@ -167,10 +165,10 @@ class LeadController extends Controller
             $history->save();
 
             toastr()->success('Lead updated successfully!');
-            return view('leads.show', compact('lead'));
+            return redirect()->route('leads');
         }
-        else toastr()->error('This column is full !');
-        return view('leads.show', compact('lead'));
+        toastr()->error('This column is full !');
+        return redirect()->route('leads');
     }
 
     public function commentEdit(Lead $lead)
